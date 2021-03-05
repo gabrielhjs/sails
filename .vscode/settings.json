@@ -3,5 +3,8 @@
 	"editor.tabSize": 2,
 	"[typescript]": {
     "editor.tabSize": 2
-	}
+	},
+	"editor.fontFamily": "Fira Code",
+	"editor.fontSize": 16,
+	"editor.fontLigatures": true
 }
