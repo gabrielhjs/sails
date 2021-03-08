@@ -1,19 +1,22 @@
 {
-  "compilerOp'tions": {
+  "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
     "rootDir": "./src",
     "removeComments": true,
     "strict": true,
+    "allowJs": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/@types"
     ],
-    "baseUrl": ".",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
 }
