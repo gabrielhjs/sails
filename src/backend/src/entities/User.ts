@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4"
+import { v4 as uuidv4 } from "uuid"
 
 export class User {
 	public readonly id!: string
@@ -9,11 +9,11 @@ export class User {
 	public email!: string
 	public password!: string
 
-	constructor(props: Omit<User, "id" | "createdAt">, id?: string) {
+	constructor(props: Omit<User, "id" | "createdAt" | "updatedAt">, id?: string) {
 		Object.assign(this, props)
 
 		if (!id) {
-			this.id = uuid()
+			this.id = uuidv4()
 			this.createdAt = new Date(Date.now())
 		}
 	}
