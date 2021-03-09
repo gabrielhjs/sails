@@ -4,4 +4,3 @@ import { router } from "./routes"
 
 app.listen(3333)
 app.use(router)
-console.log('ASD')
