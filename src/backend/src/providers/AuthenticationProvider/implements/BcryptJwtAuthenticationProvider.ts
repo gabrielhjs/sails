@@ -12,7 +12,17 @@ export class BcryptJwtAuthenticationProvider implements IAuthenticationProvider 
 	}
 
 	async comparePassword(password: string, passwordHash: string): Promise<boolean> {
-		return await bcrypt.compare(password, passwordHash)
+		return await bcrypt.compare(password, passwordHash, function (error, response) {
+			if (error) {
+				throw new Error(error.message)
+			}
+			else if (response) {
+				return true
+			}
+			else {
+				return false
+			}
+		})
 	}
 
 	async getJwt(user_email: string): Promise<string> {

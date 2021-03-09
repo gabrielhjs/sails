@@ -5,7 +5,14 @@ export class GenericUsersRepository implements IUsersRepository {
 	private users: User[] = []
 
 	async findByEmail(email: string): Promise<User> {
-		return this.users.find(user => user.email === email)
+		const user = this.users.find(user => user.email === email)
+
+		if (user === undefined) {
+			throw new Error("User not found.")
+		}
+		else {
+			return user
+		}
 	}
 
 	async save(user: User): Promise<void> {

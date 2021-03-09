@@ -10,19 +10,13 @@ export class AuthenticateUserUseCase {
 
 	async execute(data: IAuthenticateUserDTO): Promise<string> {
 		const user = await this.usersRepository.findByEmail(data.email)
+		const passwordHash = await this.authentication.getHashPassword(data.password)
 
-		if (user) {
-			const passwordHash = await this.authentication.getHashPassword(data.password)
-			if (this.authentication.comparePassword(passwordHash, user.password)) {
-				return this.authentication.getJwt(user.email)
-			}
-
-			else {
-				throw new Error("User password not match.")
-			}
+		if (this.authentication.comparePassword(passwordHash, user.password)) {
+			return this.authentication.getJwt(user.email)
 		}
 		else {
-			throw new Error("User email not registred.")
+			throw new Error("User password not match.")
 		}
 	}
 }
