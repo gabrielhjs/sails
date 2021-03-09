@@ -32,6 +32,37 @@
         "semi": [
             "error",
             "never"
+        ],
+        "max-file-line-count": [
+            "error",
+            200
+        ],
+        "class-name": true,
+        "max-line-length": [
+            "error",
+            {
+                "limit": 120
+            }
+        ],
+        "no-multi-spaces": [
+            "error"
+        ],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 2,
+                "maxEOF": 1,
+                "maxBOF": 0
+            }
+        ],
+        "no-console": [
+            "error",
+            {
+                "allow": [
+                    "warn",
+                    "error"
+                ]
+            }
         ]
     }
 }
