@@ -15,9 +15,9 @@
 		"javascriptreact"
 	],
 	"editor.fontFamily": "Fira Code",
-	"editor.fontSize": 16,
 	"editor.fontLigatures": true,
 	"eslint.options": {
 		"configFile": "./.eslintrc.json"
-	}
+	},
+	"editor.detectIndentation": false
 }
