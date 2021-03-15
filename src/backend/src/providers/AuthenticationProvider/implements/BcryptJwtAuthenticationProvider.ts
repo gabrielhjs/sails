@@ -4,25 +4,15 @@ import { IAuthenticationProvider } from "../IAuthenticationProvider";
 
 export class BcryptJwtAuthenticationProvider implements IAuthenticationProvider {
 	async getHashPassword(password: string): Promise<string> {
-
-		const salt = 8  // TODO: This const must to by in .env
-		const passwordHash = await bcrypt.hash(password, salt)
-
-		return passwordHash
+		return bcrypt.hash(password, 10)
+		.catch((error: Error) => {throw new Error(error.message)})
+		.then((hashPassword: string) => {return hashPassword})
 	}
 
 	async comparePassword(password: string, passwordHash: string): Promise<boolean> {
-		return await bcrypt.compare(password, passwordHash, function (error, response) {
-			if (error) {
-				throw new Error(error.message)
-			}
-			else if (response) {
-				return true
-			}
-			else {
-				return false
-			}
-		})
+		return bcrypt.compare(password, passwordHash)
+		.catch((error: Error) => {throw new Error(error.message)})
+		.then((response: boolean) => {return response})
 	}
 
 	async getJwt(user_email: string): Promise<string> {

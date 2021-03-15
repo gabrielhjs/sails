@@ -26,6 +26,11 @@
     "eslint-plugin-react": "^7.22.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "npx": "^10.2.2",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^9.1.1",
+    "typeorm": "^0.2.31",
     "uuidv4": "^6.2.6"
   }
 }

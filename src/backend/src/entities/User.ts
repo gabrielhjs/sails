@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid"
 export class User {
 	public readonly id!: string
 	public readonly createdAt!: Date
-	public updatedAt!: Date
+	public readonly updatedAt!: Date
 
 	public name!: string
 	public email!: string
@@ -15,6 +15,10 @@ export class User {
 		if (!id) {
 			this.id = uuidv4()
 			this.createdAt = new Date(Date.now())
+			this.updatedAt = this.createdAt
+		}
+		else {
+			this.updatedAt = new Date(Date.now())
 		}
 	}
 }

@@ -11,14 +11,12 @@ export class CreateUserUseCase {
 
 	async execute(data: ICreateUserRequestDTO) {
 		const userAlreadyExists = await this.userRepository.findByEmail(data.email)
-
-		data.password = await this.authenticate.getHashPassword(data.password)
-
 		if (userAlreadyExists) {
 			throw new Error("User already exists.")
 		}
 
 		else {
+			data.password = await this.authenticate.getHashPassword(data.password)
 			const user = new User(data)
 			await this.userRepository.save(user)
 		}

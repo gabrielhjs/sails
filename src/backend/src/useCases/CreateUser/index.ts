@@ -1,15 +1,16 @@
 import { BcryptJwtAuthenticationProvider } from "../../providers/AuthenticationProvider/implements/BcryptJwtAuthenticationProvider";
 import { GenericUsersRepository } from "../../repositories/implements/gerericUsersRepository";
+import { TypeormUsersRepository } from "../../repositories/implements/typeormUsersRepository";
 import { CreateUserController } from "./CreateUserController";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
 
-const genericUsersRepository = new GenericUsersRepository
-const bcryptJwtAuthenticationProvider = new BcryptJwtAuthenticationProvider
+const UsersRepository = new TypeormUsersRepository
+const AuthenticationProvider = new BcryptJwtAuthenticationProvider
 
 const createUserUseCase = new CreateUserUseCase(
-	genericUsersRepository,
-	bcryptJwtAuthenticationProvider
+	UsersRepository,
+	AuthenticationProvider
 )
 
 const createUserController = new CreateUserController(

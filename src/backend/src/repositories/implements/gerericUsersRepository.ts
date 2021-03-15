@@ -4,11 +4,11 @@ import { IUsersRepository } from "../IUsersRepository";
 export class GenericUsersRepository implements IUsersRepository {
 	private users: User[] = []
 
-	async findByEmail(email: string): Promise<User> {
+	async findByEmail(email: string): Promise<User|void> {
 		const user = this.users.find(user => user.email === email)
 
 		if (user === undefined) {
-			throw new Error("User not found.")
+			return
 		}
 		else {
 			return user
