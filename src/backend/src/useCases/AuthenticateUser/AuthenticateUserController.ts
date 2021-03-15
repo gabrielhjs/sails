@@ -16,7 +16,7 @@ export class AuthenticateUserController {
 			})
 
 			return response.status(200).send({
-				authorization: jwt
+				token: jwt
 			})
 		}
 		catch (error) {

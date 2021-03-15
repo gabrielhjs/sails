@@ -1,10 +1,10 @@
-{
-	"type": "postgres",
-	"host": "localhost",
-	"port": 5432,
-	"username": "postgres",
-	"password": "admin123",
-	"database": "sails",
+import dotenv from "dotenv"
+
+dotenv.config()
+
+module.exports = {
+	"type": `${process.env.DB_TYPE}`,
+	"url": `${process.env.DB_URL}`,
 	"synchronize": true,
 	"logging": false,
 	"entities": [
