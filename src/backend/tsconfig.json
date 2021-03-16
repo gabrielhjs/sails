@@ -1,24 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
-    "rootDir": "./src",
-    "removeComments": true,
-    "strict": true,
-    "allowJs": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": [
-    "src/**/*.ts"
-  ],
+	"compilerOptions": {
+		"outDir": "dist",
+		"target": "es2017",
+		"module": "commonjs",
+		"rootDir": "./src",
+		"removeComments": true,
+		"strict": true,
+		"allowJs": true,
+		"typeRoots": [
+			"./node_modules/@types",
+			"./src/@types"
+		],
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+		"src/**/*.ts"
+	],
 	"exclude": [
 		"node_modules"
 	]

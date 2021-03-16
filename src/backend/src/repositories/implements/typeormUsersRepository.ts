@@ -2,6 +2,10 @@ import { getRepository } from "typeorm"
 import { User } from "../../entities/User"
 import { OrmUser } from "../../typeorm/models/User"
 import { IUsersRepository } from "../IUsersRepository"
+import dotenv from "dotenv"
+
+
+dotenv.config()
 
 
 export class TypeormUsersRepository implements IUsersRepository {
@@ -12,9 +16,9 @@ export class TypeormUsersRepository implements IUsersRepository {
 		await repository.save(new_user)
 	}
 
-	async findByEmail(email: string): Promise<User|void> {
+	async findByEmail(email: string): Promise<User | void> {
 		const repository = getRepository(OrmUser)
-		const user = await repository.findOne({ where: { email }})
+		const user = await repository.findOne({ where: { email } })
 
 		if (user === undefined) {
 			return

@@ -1,0 +1,14 @@
+{
+	"type": "postgres",
+	"url": "postgres://postgres:admin@localhost:5433/sails",
+	"logging": false,
+	"entities": [
+		"src/typeorm/models/*.ts"
+	],
+	"migrations": [
+		"src/typeorm/migrations/*.ts"
+	],
+	"cli": {
+		"migrationsDir": "src/typeorm/migrations"
+	}
+}
