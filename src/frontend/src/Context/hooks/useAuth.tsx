@@ -17,14 +17,20 @@ export default function useAuth() {
 
     setLoading(false);
   }, []);
-  
-  async function handleLogin() {
-    const { data: { token } } = await api.post('/authenticate');
-    console.log("token",token)
-    localStorage.setItem('token', JSON.stringify(token));
-    api.defaults.headers.Authorization = `Bearer ${token}`;
-    setAuthenticated(true);
-    history.push('/users');
+
+  async function handleLogin(event: any) {
+
+    if (event.user === 'admin' && event.password === 'admin') {
+      const { data: { token } } = await api.post('/authenticate');
+      localStorage.setItem('token', JSON.stringify(token));
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+      setAuthenticated(true);
+      history.push('/users');
+      return { token: token };
+    } else {
+
+      return { error: 'Usuário ou senha inválido' };
+    }
   }
 
   function handleLogout() {
@@ -33,6 +39,6 @@ export default function useAuth() {
     api.defaults.headers.Authorization = undefined;
     history.push('/login');
   }
-  
+
   return { authenticated, loading, handleLogin, handleLogout };
 }

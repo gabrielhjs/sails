@@ -1,5 +1,5 @@
 import GlobalStyles from '../src/styles/global';
-import Login from './pages/login/Login';
+// import Login from './pages/login/Login';
 import { Router } from 'react-router-dom';
 
 import Routes from './pages/routes'
@@ -14,7 +14,7 @@ function App() {
       <Router history={history}>
         {/* <Login /> */}
         <Routes />
-        <GlobalStyles />
+        {/* <GlobalStyles /> */}
       </Router>
     </AuthProvider>
   );
