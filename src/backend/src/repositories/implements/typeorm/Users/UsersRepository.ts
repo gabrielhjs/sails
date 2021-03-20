@@ -1,7 +1,7 @@
 import { getRepository } from "typeorm"
-import { User } from "../../entities/User"
-import { OrmUser } from "../../typeorm/models/User"
-import { IUsersRepository } from "../IUsersRepository"
+import { User } from "../../../../entities/User"
+import { OrmUser } from "../../../../typeorm/models/User"
+import { IUsersRepository } from "../../../IUsers/IUsersRepository"
 import dotenv from "dotenv"
 
 

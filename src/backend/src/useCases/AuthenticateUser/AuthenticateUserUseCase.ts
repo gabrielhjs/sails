@@ -1,5 +1,5 @@
 import { IAuthenticationProvider } from "../../providers/AuthenticationProvider/IAuthenticationProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../repositories/IUsers/IUsersRepository";
 import { IAuthenticateUserDTO } from "./AuthenticateUserDTO";
 
 export class AuthenticateUserUseCase {
@@ -13,7 +13,7 @@ export class AuthenticateUserUseCase {
 		if (!user) {
 			throw new Error("User and/or password not match")
 		}
-		else{
+		else {
 			if (await this.authentication.comparePassword(data.password, user.password)) {
 				return await this.authentication.getJwt(user.email)
 			}

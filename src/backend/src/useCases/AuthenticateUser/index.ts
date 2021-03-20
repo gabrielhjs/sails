@@ -1,6 +1,5 @@
 import { BcryptJwtAuthenticationProvider } from "../../providers/AuthenticationProvider/implements/BcryptJwtAuthenticationProvider";
-import { GenericUsersRepository } from "../../repositories/implements/gerericUsersRepository";
-import { TypeormUsersRepository } from "../../repositories/implements/typeormUsersRepository";
+import { TypeormUsersRepository } from "../../repositories/implements/typeorm/Users/UsersRepository";
 import { AuthenticateUserController } from "./AuthenticateUserController";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 

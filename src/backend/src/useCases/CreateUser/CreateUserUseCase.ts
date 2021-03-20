@@ -1,6 +1,6 @@
 import { User } from "../../entities/User";
 import { IAuthenticationProvider } from "../../providers/AuthenticationProvider/IAuthenticationProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../repositories/IUsers/IUsersRepository";
 import { ICreateUserRequestDTO } from "./CreateUserDTO";
 
 export class CreateUserUseCase {
