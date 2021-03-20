@@ -1,6 +1,14 @@
+import "reflect-metadata"
+import "./typeorm/connect"
+import cors from "cors"
+import dotenv from "dotenv"
 import { app } from "./app"
 import { router } from "./routes"
 
 
-app.listen(3333)
+dotenv.config()
+
+
+app.use(cors())
 app.use(router)
+app.listen(3333)
