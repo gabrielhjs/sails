@@ -1,5 +1,4 @@
 node_modules/
-<<<<<<< HEAD
 dsit/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
@@ -25,7 +24,5 @@ dsit/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-=======
 src/backend/dist
 .vscode/
->>>>>>> feature/CU-3n6866
