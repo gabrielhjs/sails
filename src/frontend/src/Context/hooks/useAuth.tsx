@@ -19,18 +19,21 @@ export default function useAuth() {
   }, []);
 
   async function handleLogin(event: any) {
-
-    if (event.user === 'admin' && event.password === 'admin') {
-      const { data: { token } } = await api.post('/authenticate');
-      localStorage.setItem('token', JSON.stringify(token));
-      api.defaults.headers.Authorization = `Bearer ${token}`;
-      setAuthenticated(true);
-      history.push('/users');
-      return { token: token };
-    } else {
-
-      return { error: 'Usuário ou senha inválido' };
-    }
+    const request = await api.post('/login', event)
+      .then(
+        resp => {
+          api.defaults.headers.Authorization = `Bearer ${resp.data.token}`;
+          setAuthenticated(true);
+          return { token: resp.data.token };
+        }
+      ).catch(
+        function (error) {
+          setAuthenticated(false);
+          return { error: error.response.data };
+        }
+      );
+      
+    return request;
   }
 
   function handleLogout() {
