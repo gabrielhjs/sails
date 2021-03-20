@@ -1,4 +1,5 @@
 import { Entity, PrimaryColumn, Column, OneToOne, JoinColumn } from "typeorm"
+import { Product } from "../../entities/Product"
 
 import { OrmProduct } from "./Product"
 
@@ -17,7 +18,7 @@ export class OrmProductStock {
 	@Column("integer")
 	quantity!: number
 
-	@OneToOne(type => OrmProduct, { onDelete: "RESTRICT" })
+	@OneToOne(type => OrmProduct, (product: OrmProduct) => product.stock)
 	@JoinColumn()
 	product!: OrmProduct
 }

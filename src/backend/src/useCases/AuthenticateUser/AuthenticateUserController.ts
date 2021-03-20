@@ -20,7 +20,7 @@ export class AuthenticateUserController {
 			})
 		}
 		catch (error) {
-			return response.status(401).send({
+			return response.status(200).send({
 				error: error.message || "Unexpected Error."
 			})
 		}

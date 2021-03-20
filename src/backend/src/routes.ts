@@ -1,5 +1,6 @@
 import { Router } from "express"
 import { authenticateUserController } from "./useCases/AuthenticateUser"
+import { createProductController } from "./useCases/CreateProduct"
 import { createUserController } from "./useCases/CreateUser"
 
 
@@ -12,6 +13,9 @@ router.get("/status/", (request, response) => {
 
 router.post("/users/", (request, response) => {
 	return createUserController.handle(request, response)
+})
+router.post("/products/", (request, response) => {
+	return createProductController.handle(request, response)
 })
 
 router.post("/login/", (request, response) => {

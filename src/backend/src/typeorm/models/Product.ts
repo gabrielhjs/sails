@@ -16,7 +16,10 @@ export class OrmProduct {
 	@Column()
 	name!: string
 
-	@OneToOne(type => OrmProductStock, { onDelete: "CASCADE" })
+	@OneToOne(type => OrmProductStock, (stock: OrmProductStock) => stock.product, {
+		onDelete: "CASCADE",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
-	productStock!: OrmProductStock
+	stock!: OrmProductStock
 }

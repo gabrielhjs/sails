@@ -11,7 +11,6 @@ export class ProductStock {
 
 	constructor(props: Omit<ProductStock, "id" | "createdAt" | "updatedAt">, id?: string) {
 		Object.assign(this, props)
-
 		if (!id) {
 			this.id = uuidv4()
 			this.createdAt = new Date(Date.now())
