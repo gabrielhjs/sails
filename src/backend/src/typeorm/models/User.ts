@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column } from "typeorm"
+import { Entity, PrimaryColumn, Column, ObjectIdColumn, ObjectID } from "typeorm"
 
 
 @Entity("users")
@@ -10,9 +10,9 @@ export class OrmUser {
 	name!: string
 
 	@Column()
-	email!:string
+	email!: string
 
-	@Column()
+	@Column({ select: false })
 	password!: string
 
 	@Column("date")

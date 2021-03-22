@@ -10,13 +10,13 @@ dotenv.config()
 
 export class TypeormProductStockRepository implements IProductStockRepository {
 	async save(productStock: ProductStock): Promise<void> {
-		const repository = getRepository(OrmProductStock)
+		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
 		const newProductStock = repository.create(productStock)
 		await repository.save(newProductStock)
 	}
 
 	async find(productId: string): Promise<ProductStock | void> {
-		const repository = getRepository(OrmProductStock)
+		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
 		const productStock = await repository.findOne({ where: { product: productId } })
 
 		if (productStock === undefined) {
@@ -28,7 +28,7 @@ export class TypeormProductStockRepository implements IProductStockRepository {
 	}
 
 	async addAmount(productId: string, quantity: number): Promise<ProductStock> {
-		const repository = getRepository(OrmProductStock)
+		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
 		const productStock = await repository.findOne({ where: { product: productId } })
 
 		if (productStock === undefined) {
@@ -42,7 +42,7 @@ export class TypeormProductStockRepository implements IProductStockRepository {
 		}
 	}
 	async subtractAmount(productId: string, quantity: number): Promise<ProductStock> {
-		const repository = getRepository(OrmProductStock)
+		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
 		const productStock = await repository.findOne({ where: { product: productId } })
 
 		if (productStock === undefined) {

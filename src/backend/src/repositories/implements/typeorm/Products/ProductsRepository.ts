@@ -12,8 +12,8 @@ dotenv.config()
 
 export class TypeormProductRepository implements IProductRepository {
 	async save(product: Product): Promise<void> {
-		const productRepository = getRepository(OrmProduct)
-		const productStockRepository = getRepository(OrmProductStock)
+		const productRepository = getRepository(OrmProduct, process.env.NODE_ENV)
+		const productStockRepository = getRepository(OrmProductStock, process.env.NODE_ENV)
 
 		const productStock = new ProductStock({
 			quantity: 0,
@@ -27,7 +27,7 @@ export class TypeormProductRepository implements IProductRepository {
 	}
 
 	async find(id: string): Promise<Product | void> {
-		const repository = getRepository(OrmProduct)
+		const repository = getRepository(OrmProduct, process.env.NODE_ENV)
 		const product = await repository.findOne({ where: { id } })
 
 		if (product === undefined) {

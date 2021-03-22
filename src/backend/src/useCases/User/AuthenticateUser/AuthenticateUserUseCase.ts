@@ -1,5 +1,5 @@
-import { IAuthenticationProvider } from "../../providers/AuthenticationProvider/IAuthenticationProvider";
-import { IUsersRepository } from "../../repositories/IUsers/IUsersRepository";
+import { IAuthenticationProvider } from "../../../providers/AuthenticationProvider/IAuthenticationProvider";
+import { IUsersRepository } from "../../../repositories/IUsers/IUsersRepository";
 import { IAuthenticateUserDTO } from "./AuthenticateUserDTO";
 
 export class AuthenticateUserUseCase {

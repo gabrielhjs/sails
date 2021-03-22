@@ -189,7 +189,7 @@ export default {
 
 	// A preset that is used as a base for Jest's configuration
 
-	// preset: undefined,
+	preset: 'ts-jest',
 
 
 
@@ -231,17 +231,17 @@ export default {
 
 	// The root directory that Jest should scan for tests and modules within
 
-	// rootDir: undefined,
+	rootDir: "./",
 
 
 
 	// A list of paths to directories that Jest should use to search for files in
 
-	// roots: [
+	roots: [
 
-	//   "<rootDir>"
+		"<rootDir>/src"
 
-	// ],
+	],
 
 
 
@@ -307,11 +307,11 @@ export default {
 
 	// An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
 
-	// testPathIgnorePatterns: [
+	testPathIgnorePatterns: [
 
-	//   "\\\\node_modules\\\\"
+		"\\\\node_modules\\\\"
 
-	// ],
+	],
 
 
 

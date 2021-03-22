@@ -1,4 +1,4 @@
-import { TypeormProductRepository } from "../../repositories/implements/typeorm/Products/ProductsRepository"
+import { TypeormProductRepository } from "../../../repositories/implements/typeorm/Products/ProductsRepository"
 import { CreateProductController } from "./CreateProductController"
 import { CreateProductUseCase } from "./CreateProductUseCase"
 

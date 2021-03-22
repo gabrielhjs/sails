@@ -1,14 +1,63 @@
-{
-	"type": "postgres",
-	"url": "postgres://postgres:admin@localhost:5433/sails",
-	"logging": false,
-	"entities": [
-		"src/typeorm/models/*.ts"
-	],
-	"migrations": [
-		"src/typeorm/migrations/*.ts"
-	],
-	"cli": {
-		"migrationsDir": "src/typeorm/migrations"
+[
+	{
+		"name": "postgres",
+		"type": "postgres",
+		"url": "postgres://postgres:admin@localhost:5433/sails",
+		"logging": false,
+		"entities": [
+			"src/typeorm/models/*.ts"
+		],
+		"migrations": [
+			"src/typeorm/migrations/postgres/*.ts"
+		],
+		"cli": {
+			"migrationsDir": "src/typeorm/migrations/postgres"
+		}
+	},
+	{
+		"name": "mongodb",
+		"type": "mongodb",
+		"url": "mongodb://localhost:27017/sails",
+		"logging": false,
+		"entities": [
+			"src/typeorm/models/*.ts"
+		],
+		"migrations": [
+			"src/typeorm/migrations/mongodb/*.ts"
+		],
+		"cli": {
+			"migrationsDir": "src/typeorm/migrations/mongodb"
+		}
+	},
+	{
+		"name": "prod",
+		"type": "postgres",
+		"url": "postgres://postgres:admin@localhost:5433/sails",
+		"logging": false,
+		"entities": [
+			"dist/typeorm/models/*.js"
+		],
+		"migrations": [
+			"dist/typeorm/migrations/*.js"
+		],
+		"cli": {
+			"migrationsDir": "dist/typeorm/migrations"
+		}
+	},
+	{
+		"name": "test",
+		"type": "postgres",
+		"url": "postgres://postgres:admin@localhost:5433/sails_test",
+		"logging": false,
+		"entities": [
+			"src/typeorm/models/*.ts"
+		],
+		"migrations": [
+			"src/typeorm/migrations/*.ts"
+		],
+		"cli": {
+			"entitiesDir": "src/typeorm/models/entity",
+			"migrationsDir": "src/typeorm/migrations"
+		}
 	}
-}
+]
