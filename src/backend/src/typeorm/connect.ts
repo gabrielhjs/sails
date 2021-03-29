@@ -26,7 +26,6 @@ const testConnection = {
 	async create() {
 		const entities = path.join(__dirname, "./models/*.ts")
 		const migrations = path.join(__dirname, "./migrations/*.ts")
-		console.log(entities)
 		await createConnection({
 			"name": "test",
 			"type": "postgres",

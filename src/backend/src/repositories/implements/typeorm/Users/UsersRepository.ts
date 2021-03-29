@@ -18,13 +18,24 @@ export class TypeormUsersRepository implements IUsersRepository {
 
 	async findByEmail(email: string): Promise<User | void> {
 		const repository = getRepository(OrmUser, process.env.NODE_ENV)
-		const user = await repository.findOne({ where: { email } })
+		const user = await repository.findOne(
+			{
+				where: { email }, select: [
+					"id",
+					"name",
+					"email",
+					"password",
+					"createdAt",
+					"updatedAt"
+				]
+			}
+		)
 
 		if (user === undefined) {
 			return
 		}
 		else {
-			return new User(user)
+			return user
 		}
 	}
 

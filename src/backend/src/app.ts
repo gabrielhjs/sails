@@ -21,7 +21,7 @@ app.use(compression({
 
 
 app.use(router)
-app.use("/users", userRouter)
+app.use("/user", userRouter)
 app.use("/product", productRouter)
 
 

@@ -3,12 +3,12 @@ import { TypeormUsersRepository } from "../../../repositories/implements/typeorm
 import { AuthenticateUserController } from "./AuthenticateUserController";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 
-const bcryptJwtAuthenticationProvider = new BcryptJwtAuthenticationProvider
-const generecUsersRepository = new TypeormUsersRepository
+const authenticationProvider = new BcryptJwtAuthenticationProvider
+const usersRepository = new TypeormUsersRepository
 
 const authenticateUserUseCase = new AuthenticateUserUseCase(
-	generecUsersRepository,
-	bcryptJwtAuthenticationProvider
+	usersRepository,
+	authenticationProvider
 )
 
 const authenticateUserController = new AuthenticateUserController(

@@ -15,7 +15,7 @@ export class AuthenticateUserUseCase {
 		}
 		else {
 			if (await this.authentication.comparePassword(data.password, user.password)) {
-				return await this.authentication.getJwt(user.email)
+				return await this.authentication.getJwt(user.id)
 			}
 			else {
 				throw new Error("User and/or password not match")
