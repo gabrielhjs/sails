@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react';
 
 import { Context } from '../../Context/AuthContext';
-import history from '../../pages/history';
+import history from '../history';
 import { Container } from './style';
 
 function initialState() {
@@ -13,10 +13,14 @@ export default function Login() {
   const { handleLogin } = useContext(Context);
   const [values, setValues] = useState(initialState);
   const [error, setError] = useState(null);
+  const btnLogin = document.querySelector(".btn-login");
+
+  btnLogin?.addEventListener("click", event => {
+    event.preventDefault();
+  })
 
   function onChange(event: any) {
     const { value, name } = event.target;
-
     setValues({
       ...values,
       [name]: value
@@ -26,25 +30,38 @@ export default function Login() {
   async function onSubmit(event: any) {
     event.preventDefault();
     const { token, error } = await handleLogin(values)
+    const form = document.querySelector("form");
 
-    if (token) {
-      localStorage.setItem('token', JSON.stringify(token));
-      history.push('/users');
+    if (form) {
+      form.classList.remove('form-hide')
+      form.classList.remove('validate-error')
+
+      if (token) {
+        // call animation success
+        form.classList.add("form-hide");
+        localStorage.setItem('token', JSON.stringify(token));
+        setTimeout(() => {
+          history.push('/users');
+        }, 300);
+      }
+
+      if (error) {
+        setValues(initialState);
+        setError(error.error)
+        // call animation error
+        form.classList.add("validate-error");
+      }
+
+
     }
-
-    if (error) {
-      setValues(initialState);
-      setError(error.error)
-    }
-
   }
 
   return (
-    <div className="user-login">
-      <Container>
-        <h1 className="user-login__title">Acessar o Sistema</h1>
-        <form>
-          <div className="user-login__form-control">
+    <Container>
+      <div>
+        <h1>Enter the Sails</h1>
+        <div>
+          <form>
             <label htmlFor="email">Email</label>
             <input
               id="email"
@@ -53,8 +70,8 @@ export default function Login() {
               onChange={onChange}
               value={values.email}
             />
-          </div>
-          <div className="user-login__form-control">
+
+
             <label htmlFor="password">Senha</label>
             <input
               id="password"
@@ -63,15 +80,17 @@ export default function Login() {
               onChange={onChange}
               value={values.password}
             />
-          </div>
-          {error && (
-            <div className="user-login__error">{error}</div>
-          )}
-          <button type="button" onClick={onSubmit}>Entrar</button>
-
-        </form>
+            <div className="message-error">
+              {error ? (
+                <small>{error}</small>
+              ) : <span>&nbsp;</span>}
+            </div>
+            <div>
+              <button className="btn-login" type="button" onClick={onSubmit}>Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </Container>
-    </div>
-    // <button type="button" onClick={handleLogin}>Entrar</button>
   );
 }

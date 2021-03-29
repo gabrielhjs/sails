@@ -8,8 +8,8 @@ export default createGlobalStyle`
     }
 
     body {
-        background:#121214;
+        background:#143642;
         color:#e1e1e6;
-        
+        font-family: Roboto, Arial, sans-serif;
     }
 `;
