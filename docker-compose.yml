@@ -1,0 +1,9 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./src/backend/
+    ports:
+      - 3333:3333/tcp
+    environment:
+      NODE_ENV: prod

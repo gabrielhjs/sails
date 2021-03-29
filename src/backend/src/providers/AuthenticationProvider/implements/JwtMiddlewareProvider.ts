@@ -1,10 +1,7 @@
 import jwt from "jsonwebtoken"
 
-import { Request, Response, NextFunction } from "express";
-import { IAuthenticationMiddleware } from "../IAuthenticationProvider";
-import { User } from "../../../entities/User";
-import { JwtData } from "./JwtDTO";
-
+import { Request, Response, NextFunction } from "express"
+import { IAuthenticationMiddleware } from "../IAuthenticationProvider"
 
 
 export class JwtAuthenticationMiddleware implements IAuthenticationMiddleware {
@@ -37,7 +34,7 @@ export class JwtAuthenticationMiddleware implements IAuthenticationMiddleware {
 			}
 		})
 
-		request.userId = tokenData.id
+		request.userId = "asD"
 
 		return next()
 	}
