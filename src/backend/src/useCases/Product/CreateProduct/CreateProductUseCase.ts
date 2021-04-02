@@ -1,14 +1,14 @@
-import { Product } from "../../../entities/Product";
-import { IProductRepository } from "../../../repositories/IProducts/IProductRepository";
-import { ICreateProductRequestDTO } from "./CreateProductDTO";
+import { Product } from "../../../entities/Product"
+import { IProductRepository } from "../../../repositories/IProducts/IProductRepository"
+import { ICreateProductRequestDTO } from "./CreateProductDTO"
 
 export class CreateProductUseCase {
 	constructor(
-		private userRepository: IProductRepository,
+		private productRepository: IProductRepository
 	) { }
 
 	async execute(data: ICreateProductRequestDTO) {
 		const product = new Product(data)
-		await this.userRepository.save(product)
+		return await this.productRepository.save(product)
 	}
 }

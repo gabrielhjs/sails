@@ -10,10 +10,12 @@ import { IUsersRepository } from "../../../IUsers/IUsersRepository"
 
 export class TypeormUsersRepository implements IUsersRepository {
 
-	async save(user: User): Promise<void> {
+	async save(user: User): Promise<string> {
 		const repository = getRepository(OrmUser, process.env.NODE_ENV)
-		const new_user = repository.create(user)
-		await repository.save(new_user)
+		const newUser = repository.create(user)
+		await repository.save(newUser)
+
+		return newUser.id
 	}
 
 	async findByEmail(email: string): Promise<User | void> {

@@ -10,11 +10,11 @@ export class CreateProductController {
 		const { name } = request.body
 
 		try {
-			await this.createUserUseCase.execute({
+			const newProduct = await this.createUserUseCase.execute({
 				name
 			})
 
-			return response.status(201).send()
+			return response.status(201).send(newProduct)
 		}
 		catch (error) {
 			return response.status(400).send({

@@ -15,9 +15,9 @@ export class OrmUser {
 	@Column({ select: false })
 	password!: string
 
-	@Column("date")
+	@Column("timestamp")
 	createdAt!: Date
 
-	@Column("date")
+	@Column("timestamp")
 	updatedAt!: Date
 }

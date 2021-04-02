@@ -1,22 +1,12 @@
-import { v4 as uuidv4 } from "uuid"
+import { BaseEntity } from "./BaseEntity"
+import { ProductStock } from "./ProductStock"
 
-export class Product {
-	public readonly id!: string
-	public readonly createdAt!: Date
-	public readonly updatedAt!: Date
 
+export class Product extends BaseEntity {
 	public name!: string
+	public stock?: ProductStock
 
-	constructor(props: Omit<Product, "id" | "createdAt" | "updatedAt">, id?: string) {
-		Object.assign(this, props)
-
-		if (!id) {
-			this.id = uuidv4()
-			this.createdAt = new Date(Date.now())
-			this.updatedAt = this.createdAt
-		}
-		else {
-			this.updatedAt = new Date(Date.now())
-		}
+	constructor(props: Product, id?: string) {
+		super(props, id)
 	}
 }

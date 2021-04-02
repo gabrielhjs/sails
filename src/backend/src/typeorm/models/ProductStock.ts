@@ -1,5 +1,4 @@
 import { Entity, PrimaryColumn, Column, OneToOne, JoinColumn } from "typeorm"
-import { Product } from "../../entities/Product"
 
 import { OrmProduct } from "./Product"
 
@@ -9,16 +8,16 @@ export class OrmProductStock {
 	@PrimaryColumn("uuid")
 	id!: string
 
-	@Column("date")
+	@Column("timestamp")
 	createdAt!: Date
 
-	@Column("date")
+	@Column("timestamp")
 	updatedAt!: Date
 
 	@Column("integer")
 	quantity!: number
 
-	@OneToOne(type => OrmProduct, (product: OrmProduct) => product.stock)
+	@OneToOne(() => OrmProduct, product => product.stock)
 	@JoinColumn()
 	product!: OrmProduct
 }

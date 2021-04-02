@@ -7,19 +7,19 @@ export class OrmProduct {
 	@PrimaryColumn("uuid")
 	id!: string
 
-	@Column("date")
+	@Column("timestamp")
 	createdAt!: Date
 
-	@Column("date")
+	@Column("timestamp")
 	updatedAt!: Date
 
 	@Column()
 	name!: string
 
-	@OneToOne(type => OrmProductStock, (stock: OrmProductStock) => stock.product, {
+	@OneToOne(() => OrmProductStock, stock => stock.product, {
 		onDelete: "CASCADE",
-		onUpdate: "CASCADE"
+		onUpdate: "CASCADE",
+		cascade: true
 	})
-	@JoinColumn()
 	stock!: OrmProductStock
 }

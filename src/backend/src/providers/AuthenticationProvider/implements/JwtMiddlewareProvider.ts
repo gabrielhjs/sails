@@ -5,7 +5,7 @@ import { IAuthenticationMiddleware } from "../IAuthenticationProvider"
 
 
 export class JwtAuthenticationMiddleware implements IAuthenticationMiddleware {
-	async auth(request: Request, response: Response, next: NextFunction): Promise<Response | void> {
+	async handle(request: Request, response: Response, next: NextFunction): Promise<Response | void> {
 		const authorization = request.headers.authorization
 
 		if (!authorization) {

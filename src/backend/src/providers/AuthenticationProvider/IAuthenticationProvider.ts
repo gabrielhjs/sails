@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express"
 
 export interface IAuthenticationProvider {
 	getHashPassword(password: string): Promise<string>
@@ -7,5 +7,5 @@ export interface IAuthenticationProvider {
 }
 
 export interface IAuthenticationMiddleware {
-	auth(request: Request, response: Response, next: NextFunction): Promise<Response | void>
+	handle(request: Request, response: Response, next: NextFunction): Promise<Response | void>
 }

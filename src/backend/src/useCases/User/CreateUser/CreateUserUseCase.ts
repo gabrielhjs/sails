@@ -6,7 +6,7 @@ import { ICreateUserRequestDTO } from "./CreateUserDTO";
 export class CreateUserUseCase {
 	constructor(
 		private userRepository: IUsersRepository,
-		private authenticate: IAuthenticationProvider
+		private authentication: IAuthenticationProvider
 	) { }
 
 	async execute(data: ICreateUserRequestDTO) {
@@ -16,9 +16,9 @@ export class CreateUserUseCase {
 		}
 
 		else {
-			data.password = await this.authenticate.getHashPassword(data.password)
-			const user = new User(data)
-			await this.userRepository.save(user)
+			data.password = await this.authentication.getHashPassword(data.password)
+			const userId = await this.userRepository.save(new User(data))
+			return await this.authentication.getJwt(userId)
 		}
 	}
 }

@@ -5,6 +5,7 @@ import { CreateProductUseCase } from "./CreateProductUseCase"
 
 const productRepository = new TypeormProductRepository
 
+
 const createProcutUseCase = new CreateProductUseCase(
 	productRepository
 )

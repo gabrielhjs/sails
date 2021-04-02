@@ -27,21 +27,21 @@ export class TypeormProductStockRepository implements IProductStockRepository {
 		}
 	}
 
-	async addAmount(productId: string, quantity: number): Promise<ProductStock> {
+	async addAmount(productId: string, quantity: number): Promise<number> {
 		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
-		const productStock = await repository.findOne({ where: { product: productId } })
+		const productStock = await repository.findOne({ where: { product: productId }, relations: ["product"] })
 
 		if (productStock === undefined) {
 			throw new Error("Product don't exists.")
 		}
 		else {
 			productStock.quantity += quantity
-			await repository.save(productStock)
+			await repository.save(new ProductStock(productStock, productStock.id))
 
-			return new ProductStock(productStock)
+			return productStock.quantity
 		}
 	}
-	async subtractAmount(productId: string, quantity: number): Promise<ProductStock> {
+	async subAmount(productId: string, quantity: number): Promise<number> {
 		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
 		const productStock = await repository.findOne({ where: { product: productId } })
 
@@ -54,9 +54,9 @@ export class TypeormProductStockRepository implements IProductStockRepository {
 			}
 			else {
 				productStock.quantity -= quantity
-				await repository.save(productStock)
+				await repository.save(new ProductStock(productStock, productStock.id))
 
-				return new ProductStock(productStock)
+				return productStock.quantity
 			}
 		}
 	}

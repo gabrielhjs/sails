@@ -1,6 +1,6 @@
 import { Request } from "express"
 
 
-export interface IGetUserRequestDTO {
+export interface IGetProductsRequestDTO {
 	request: Request
 }

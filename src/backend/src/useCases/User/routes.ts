@@ -18,7 +18,7 @@ userRouter.post("/", (request, response) => {
 })
 
 
-userRouter.get("/", authMiddleware.auth, (request, response) => {
+userRouter.get("/", authMiddleware.handle, (request, response) => {
 	return getUserController.handle(request, response)
 })
 
