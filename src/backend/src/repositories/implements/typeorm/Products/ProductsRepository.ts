@@ -5,7 +5,6 @@ import { QueryBuilder } from "typeorm-express-query-builder"
 import { Product } from "../../../../entities/Product"
 import { ProductStock } from "../../../../entities/ProductStock"
 import { OrmProduct } from "../../../../typeorm/models/Product"
-import { OrmProductStock } from "../../../../typeorm/models/ProductStock"
 import { IProductRepository } from "../../../IProducts/IProductRepository"
 
 
@@ -15,30 +14,23 @@ dotenv.config()
 export class TypeormProductRepository implements IProductRepository {
 	async save(product: Product): Promise<Product> {
 		const productRepository = getRepository(OrmProduct, process.env.NODE_ENV)
-		const productStockRepository = getRepository(OrmProductStock, process.env.NODE_ENV)
-
 		const productStock = new ProductStock({
 			quantity: 0,
 			product: new Product(product)
 		})
 
 		product.stock = productStock
-
 		const newProduct = productRepository.create(product)
 
 		return await productRepository.save(newProduct)
 	}
 
-	async find(id: string): Promise<Product | void> {
+	async find(productId: string): Promise<Product | void> {
 		const repository = getRepository(OrmProduct, process.env.NODE_ENV)
-		const product = await repository.findOne({ where: { id } })
+		const product = await repository.findOne({ where: { id: productId }, relations: ["stock"] })
 
-		if (product === undefined) {
-			return
-		}
-		else {
-			return new Product(product)
-		}
+		if (product === undefined) { return }
+		return product
 	}
 
 	async findByQuery(request: Request): Promise<OrmProduct[]> {

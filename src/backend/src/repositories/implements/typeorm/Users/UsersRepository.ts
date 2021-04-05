@@ -9,6 +9,13 @@ import { IUsersRepository } from "../../../IUsers/IUsersRepository"
 
 
 export class TypeormUsersRepository implements IUsersRepository {
+	async find(userId: string): Promise<User | void> {
+		const repository = getRepository(OrmUser, process.env.NODE_ENV)
+		const user = await repository.findOne({ where: { id: userId } })
+
+		if (user === undefined) { return }
+		return user
+	}
 
 	async save(user: User): Promise<string> {
 		const repository = getRepository(OrmUser, process.env.NODE_ENV)
@@ -33,17 +40,14 @@ export class TypeormUsersRepository implements IUsersRepository {
 			}
 		)
 
-		if (user === undefined) {
-			return
-		}
-		else {
-			return user
-		}
+		if (user === undefined) { return }
+		return user
 	}
 
 	async findByQuery(request: Request): Promise<User[]> {
 		const repository = getRepository(OrmUser, process.env.NODE_ENV)
 		const query = new QueryBuilder(request.query).build()
+		query.relations = ["companies"]
 		return await repository.find(query)
 	}
 

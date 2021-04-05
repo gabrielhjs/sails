@@ -3,6 +3,7 @@ import { OrmProductStock } from "../../../../typeorm/models/ProductStock"
 import { IProductStockRepository } from "../../../IProducts/IProductStockRepository"
 import dotenv from "dotenv"
 import { ProductStock } from "../../../../entities/ProductStock"
+import { OrmProduct } from "../../../../typeorm/models/Product"
 
 
 dotenv.config()
@@ -27,37 +28,25 @@ export class TypeormProductStockRepository implements IProductStockRepository {
 		}
 	}
 
-	async addAmount(productId: string, quantity: number): Promise<number> {
-		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
-		const productStock = await repository.findOne({ where: { product: productId }, relations: ["product"] })
+	async addAmount(productStock: ProductStock, amount: number): Promise<number> {
+		const productStockRepository = getRepository(OrmProductStock, process.env.NODE_ENV)
 
-		if (productStock === undefined) {
-			throw new Error("Product don't exists.")
-		}
-		else {
-			productStock.quantity += quantity
-			await repository.save(new ProductStock(productStock, productStock.id))
+		productStock.quantity += amount
+		await productStockRepository.save(new ProductStock(productStock, productStock.id))
 
-			return productStock.quantity
-		}
+		return productStock.quantity
 	}
-	async subAmount(productId: string, quantity: number): Promise<number> {
+
+	async subAmount(productStock: ProductStock, amount: number): Promise<number> {
 		const repository = getRepository(OrmProductStock, process.env.NODE_ENV)
-		const productStock = await repository.findOne({ where: { product: productId } })
 
-		if (productStock === undefined) {
-			throw new Error("Product don't exists.")
+		if ((productStock.quantity - amount) < 0) {
+			throw new Error("This quantity of product is not available in stock.")
 		}
-		else {
-			if ((productStock.quantity - quantity) < 0) {
-				throw new Error("This quantity of product is not available in stock.")
-			}
-			else {
-				productStock.quantity -= quantity
-				await repository.save(new ProductStock(productStock, productStock.id))
 
-				return productStock.quantity
-			}
-		}
+		productStock.quantity -= amount
+		await repository.save(new ProductStock(productStock, productStock.id))
+
+		return productStock.quantity
 	}
 }

@@ -18,6 +18,5 @@ export class OrmProductStock {
 	quantity!: number
 
 	@OneToOne(() => OrmProduct, product => product.stock)
-	@JoinColumn()
 	product!: OrmProduct
 }

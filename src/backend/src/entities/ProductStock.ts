@@ -5,7 +5,7 @@ export class ProductStock extends BaseEntity {
 	public quantity!: number
 	public product?: Product
 
-	constructor(props: ProductStock, id?: string) {
+	constructor(props: Omit<ProductStock, "id" | "createdAt" | "updatedAt">, id?: string) {
 		super(props, id)
 	}
 }

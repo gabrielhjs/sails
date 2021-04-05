@@ -7,18 +7,19 @@ import { v4 as uuidv4 } from "uuid"
 const storageTypes = {
 	local: multer.diskStorage({
 		destination: (request, file, callback) => {
-			callback(null, path.resolve(__dirname, "..", "..", "..", "..", "temp", "uploads"))
+			callback(null, path.resolve(__dirname, "..", "..", "..", "..", "temp", "products", "images"))
 		},
 		filename: (request, file, callback) => {
 			file.filename = uuidv4() + "." + file.mimetype.split("/")[1]
 			callback(null, file.filename)
 		}
-	})
+	}),
+	memory: multer.memoryStorage()
 }
 
 
 export const multerConfig = {
-	dest: path.resolve(__dirname, "..", "..", "..", "..", "temp", "uploads"),
+	dest: path.resolve(__dirname, "..", "..", "..", "..", "temp", "products", "images"),
 	storage: storageTypes["local"],
 	fileFilter: (request, file, callback) => {
 		const formats = [

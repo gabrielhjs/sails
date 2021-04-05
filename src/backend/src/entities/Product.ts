@@ -1,12 +1,14 @@
 import { BaseEntity } from "./BaseEntity"
+import { Company } from "./Company"
 import { ProductStock } from "./ProductStock"
 
 
 export class Product extends BaseEntity {
 	public name!: string
-	public stock?: ProductStock
+	public company!: Company
+	public stock!: ProductStock
 
-	constructor(props: Product, id?: string) {
+	constructor(props: Omit<Product, "id" | "createdAt" | "updatedAt">, id?: string) {
 		super(props, id)
 	}
 }

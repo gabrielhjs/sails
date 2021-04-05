@@ -1,3 +1,4 @@
 export interface ICreateProductRequestDTO {
-	name: string
+	name: string,
+	companyId: string
 }

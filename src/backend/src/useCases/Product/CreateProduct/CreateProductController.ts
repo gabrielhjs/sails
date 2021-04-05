@@ -7,11 +7,12 @@ export class CreateProductController {
 	) { }
 
 	async handle(request: Request, response: Response): Promise<Response> {
-		const { name } = request.body
+		const { name, companyId } = request.body
 
 		try {
 			const newProduct = await this.createUserUseCase.execute({
-				name
+				name,
+				companyId
 			})
 
 			return response.status(201).send(newProduct)

@@ -1,20 +1,18 @@
+import { IProductRepository } from "../../../repositories/IProducts/IProductRepository"
 import { IProductStockRepository } from "../../../repositories/IProducts/IProductStockRepository"
 import { ISubProductRequestDTO } from "./SubProductDTO"
 
 export class SubProductUseCase {
 	constructor(
-		private productStockRepository: IProductStockRepository,
+		private productRepository: IProductRepository,
+		private productStockRepository: IProductStockRepository
 	) { }
 
 	async execute(data: ISubProductRequestDTO): Promise<number> {
+		const product = await this.productRepository.find(data.productId)
 
-		const productStock = await this.productStockRepository.find(data.productId)
+		if (product === undefined) { throw new Error("Invalid product Id") }
 
-		if (!productStock) {
-			throw new Error("This product dont have stock")
-		}
-		else {
-			return await this.productStockRepository.subAmount(data.productId, data.amount)
-		}
+		return await this.productStockRepository.subAmount(product.stock, data.amount)
 	}
 }

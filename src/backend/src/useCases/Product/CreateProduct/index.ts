@@ -1,17 +1,20 @@
+import { TypeOrmCompanyRepository } from "../../../repositories/implements/typeorm/Company/CompaniesRepository"
 import { TypeormProductRepository } from "../../../repositories/implements/typeorm/Products/ProductsRepository"
 import { CreateProductController } from "./CreateProductController"
 import { CreateProductUseCase } from "./CreateProductUseCase"
 
 
 const productRepository = new TypeormProductRepository
+const companyRepository = new TypeOrmCompanyRepository
 
 
-const createProcutUseCase = new CreateProductUseCase(
-	productRepository
+const createProductUseCase = new CreateProductUseCase(
+	productRepository,
+	companyRepository
 )
 
 const createProductController = new CreateProductController(
-	createProcutUseCase
+	createProductUseCase
 )
 
-export { createProductController, createProcutUseCase }
+export { createProductController, createProductUseCase }

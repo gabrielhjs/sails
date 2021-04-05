@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from "uuid"
 
 export class BaseEntity {
-	readonly id!: string
-	readonly createdAt!: Date
-	readonly updatedAt!: Date
+	public readonly id!: string
+	public readonly createdAt!: Date
+	public readonly updatedAt!: Date
 
-	constructor(props: BaseEntity, id?: string) {
+	constructor(props: Omit<BaseEntity, "id" | "createdAt" | "updatedAt">, id?: string) {
 		Object.assign(this, props)
 		if (!id) {
 			this.id = uuidv4()
