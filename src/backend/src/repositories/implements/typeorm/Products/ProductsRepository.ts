@@ -14,12 +14,6 @@ dotenv.config()
 export class TypeormProductRepository implements IProductRepository {
 	async save(product: Product): Promise<Product> {
 		const productRepository = getRepository(OrmProduct, process.env.NODE_ENV)
-		const productStock = new ProductStock({
-			quantity: 0,
-			product: new Product(product)
-		})
-
-		product.stock = productStock
 		const newProduct = productRepository.create(product)
 
 		return await productRepository.save(newProduct)

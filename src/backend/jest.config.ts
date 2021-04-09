@@ -19,7 +19,7 @@ export default {
 
 	// Stop running tests after `n` failures
 
-	// bail: 0,
+	bail: true,
 
 
 
@@ -239,7 +239,7 @@ export default {
 
 	roots: [
 
-		"<rootDir>/src"
+		"<rootDir>/src/tests"
 
 	],
 
@@ -277,7 +277,7 @@ export default {
 
 	// The test environment that will be used for testing
 
-	testEnvironment: "node",
+	testEnvironment: "jsdom",
 
 
 

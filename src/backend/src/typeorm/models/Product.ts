@@ -17,6 +17,9 @@ export class OrmProduct {
 	@Column()
 	name!: string
 
+	@Column({ nullable: true })
+	description?: string
+
 	@ManyToOne(() => OrmCompany, company => company.products)
 	@JoinColumn()
 	company!: OrmCompany

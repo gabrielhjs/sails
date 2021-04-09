@@ -4,7 +4,7 @@ import { connection } from "./typeorm/connect"
 import { app } from "./app"
 
 
-connection.create()
+connection.create(process.env.NODE_ENV || "deafult")
 
 
 app.use(cors())

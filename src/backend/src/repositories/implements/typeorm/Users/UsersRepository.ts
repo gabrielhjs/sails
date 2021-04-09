@@ -48,6 +48,7 @@ export class TypeormUsersRepository implements IUsersRepository {
 		const repository = getRepository(OrmUser, process.env.NODE_ENV)
 		const query = new QueryBuilder(request.query).build()
 		query.relations = ["companies"]
+		query.cache = true
 		return await repository.find(query)
 	}
 

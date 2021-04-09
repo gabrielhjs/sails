@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 import { getRepository } from "typeorm"
 import { Company } from "../../../entities/Company"
 import { Product } from "../../../entities/Product"
+import { ProductStock } from "../../../entities/ProductStock"
 import { ICompanyRepository } from "../../../repositories/ICompanies/ICompanyRepository"
 import { TypeOrmCompanyRepository } from "../../../repositories/implements/typeorm/Company/CompaniesRepository"
 import { IProductRepository } from "../../../repositories/IProducts/IProductRepository"
@@ -23,9 +24,15 @@ export class CreateProductUseCase {
 
 		if (company === undefined) { throw new Error("Invalid company Id") }
 
+		const productStock = new ProductStock({
+			quantity: 0
+		})
+
 		const product = new Product({
 			name: data.name,
-			company: company
+			description: data.description,
+			company: company,
+			stock: productStock
 		})
 
 		return await this.productRepository.save(product)

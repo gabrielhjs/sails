@@ -10,7 +10,7 @@
 				"host": "localhost",
 				"port": "6379"
 			},
-			"duration": 3000000
+			"duration": 5000
 		},
 		"entities": [
 			"src/typeorm/models/*.ts"
@@ -61,11 +61,11 @@
 			"src/typeorm/models/*.ts"
 		],
 		"migrations": [
-			"src/typeorm/migrations/*.ts"
+			"src/typeorm/migrations/postgres/*.ts"
 		],
 		"cli": {
 			"entitiesDir": "src/typeorm/models/entity",
-			"migrationsDir": "src/typeorm/migrations"
+			"migrationsDir": "src/typeorm/migrations/postgres"
 		}
 	}
 ]

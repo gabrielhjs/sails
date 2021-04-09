@@ -18,5 +18,25 @@ export class AddProductImageUseCase {
 			.toFormat("png", { quality: 100 })
 			.toFile("temp/products/images/" + data.productId + "-thumbnail.png")
 			.then(() => { fs.unlink("temp/products/images/" + data.filename, () => { }) })
+
+		sharp("temp/products/images/" + data.filename).resize(
+			400, 400, {
+			fit: "inside",
+			position: "right top",
+		}
+		)
+			.toFormat("png", { quality: 100 })
+			.toFile("temp/products/images/" + data.productId + "-small.png")
+			.then(() => { fs.unlink("temp/products/images/" + data.filename, () => { }) })
+
+		sharp("temp/products/images/" + data.filename).resize(
+			800, 800, {
+			fit: "inside",
+			position: "right top",
+		}
+		)
+			.toFormat("png", { quality: 100 })
+			.toFile("temp/products/images/" + data.productId + "-medium.png")
+			.then(() => { fs.unlink("temp/products/images/" + data.filename, () => { }) })
 	}
 }

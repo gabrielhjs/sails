@@ -3,15 +3,16 @@ import { CreateProductUseCase } from "./CreateProductUseCase";
 
 export class CreateProductController {
 	constructor(
-		private createUserUseCase: CreateProductUseCase
+		private createProductUseCase: CreateProductUseCase
 	) { }
 
 	async handle(request: Request, response: Response): Promise<Response> {
-		const { name, companyId } = request.body
+		const { name, description, companyId } = request.body
 
 		try {
-			const newProduct = await this.createUserUseCase.execute({
+			const newProduct = await this.createProductUseCase.execute({
 				name,
+				description,
 				companyId
 			})
 
