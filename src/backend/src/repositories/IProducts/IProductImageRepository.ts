@@ -1,7 +1,9 @@
-import { ProductImage } from "../../entities/ProductImages";
+import { Request } from "express"
+
+import { ProductImage } from "../../entities/ProductImages"
 
 
 export interface IProductImageRepository {
-	find(productId: string): Promise<ProductImage[] | void>
-	save(productStock: ProductImage): Promise<void>
+	findByQuery(request: Request): Promise<ProductImage[]>
+	save(productImage: ProductImage): Promise<ProductImage>
 }

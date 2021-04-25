@@ -1,9 +1,11 @@
 import { User } from "../../../entities/User";
 import { IAuthenticationProvider } from "../../../providers/AuthenticationProvider/IAuthenticationProvider";
 import { IUsersRepository } from "../../../repositories/IUsers/IUsersRepository";
+import { UseCase } from "../../IUseCase";
 import { ICreateUserRequestDTO } from "./CreateUserDTO";
 
-export class CreateUserUseCase {
+
+export class CreateUserUseCase implements UseCase {
 	constructor(
 		private userRepository: IUsersRepository,
 		private authentication: IAuthenticationProvider

@@ -22,7 +22,7 @@ export class TypeOrmCompanyRepository implements ICompanyRepository {
 	async findByQuery(request: Request): Promise<Company[]> {
 		const repository = getRepository(OrmCompany, process.env.NODE_ENV)
 		const query = new QueryBuilder(request.query).build()
-		query.relations = ["owner", "products", "products.stock"]
+		query.relations = ["owner", "products", "products.stock", "categories"]
 		query.cache = true
 
 		return await repository.find(query)

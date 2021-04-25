@@ -4,14 +4,6 @@
 		"type": "postgres",
 		"url": "postgres://postgres:admin@localhost:5433/sails",
 		"logging": false,
-		"cache": {
-			"type": "redis",
-			"options": {
-				"host": "localhost",
-				"port": "6379"
-			},
-			"duration": 5000
-		},
 		"entities": [
 			"src/typeorm/models/*.ts"
 		],

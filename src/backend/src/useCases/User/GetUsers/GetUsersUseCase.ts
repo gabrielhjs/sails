@@ -1,7 +1,9 @@
 import { IUsersRepository } from "../../../repositories/IUsers/IUsersRepository";
+import { UseCase } from "../../IUseCase";
 import { IGetUserRequestDTO } from "./GetUsersDTO";
 
-export class GetUserUseCase {
+
+export class GetUserUseCase implements UseCase {
 	constructor(
 		private userRepository: IUsersRepository,
 	) { }

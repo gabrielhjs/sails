@@ -1,10 +1,15 @@
-import { Entity, PrimaryColumn, Column, OneToOne, JoinColumn, ManyToOne } from "typeorm"
+import { Entity, PrimaryColumn, Column, OneToOne, JoinColumn, ManyToOne, OneToMany } from "typeorm"
+import { Product } from "../../entities/Product"
+import { ProductCategory } from "../../entities/ProductCategory"
+import { ProductImage } from "../../entities/ProductImages"
 import { OrmCompany } from "./Company"
+import { OrmProductCategory } from "./ProductCategory"
+import { OrmProductImage } from "./ProductImages"
 import { OrmProductStock } from "./ProductStock"
 
 
 @Entity("products")
-export class OrmProduct {
+export class OrmProduct implements Product {
 	@PrimaryColumn("uuid")
 	id!: string
 
@@ -31,4 +36,15 @@ export class OrmProduct {
 	})
 	@JoinColumn()
 	stock!: OrmProductStock
+
+	@ManyToOne(() => OrmProductCategory, category => category.products, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE",
+		cascade: true
+	})
+	@JoinColumn()
+	category!: ProductCategory
+
+	@OneToMany(() => OrmProductImage, image => image.product)
+	images?: ProductImage[]
 }

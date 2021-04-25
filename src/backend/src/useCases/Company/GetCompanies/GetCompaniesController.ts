@@ -1,8 +1,9 @@
 import { Request, Response } from "express"
+import { Controller } from "../../IController"
 import { GetCompanyUseCase } from "./GetCompaniesUseCase"
 
 
-export class GetCompanyController {
+export class GetCompanyController implements Controller {
 	constructor(
 		private getCompanyUseCase: GetCompanyUseCase
 	) { }

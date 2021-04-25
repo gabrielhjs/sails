@@ -1,9 +1,10 @@
 import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm"
+import { User } from "../../entities/User"
 import { OrmCompany } from "./Company"
 
 
 @Entity("users")
-export class OrmUser {
+export class OrmUser implements User {
 	@PrimaryColumn("uuid")
 	id!: string
 

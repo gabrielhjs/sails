@@ -1,7 +1,9 @@
 import { Request, Response } from "express"
+import { Controller } from "../../IController";
 import { AddProductUseCase } from "./AddProductUseCase";
 
-export class AddProductController {
+
+export class AddProductController implements Controller {
 	constructor(
 		private addUserUseCase: AddProductUseCase
 	) { }

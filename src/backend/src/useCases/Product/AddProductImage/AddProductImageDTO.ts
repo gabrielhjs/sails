@@ -1,5 +1,8 @@
-export interface IAddProductImageRequestDTO {
+import { DTO } from "../../IDTO"
+
+
+export interface IAddProductImageRequestDTO extends DTO {
 	productId: string
-	filename: string
+	url: string
 	size: number
 }

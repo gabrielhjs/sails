@@ -3,7 +3,6 @@ import { Request } from "express"
 import { getRepository } from "typeorm"
 import { QueryBuilder } from "typeorm-express-query-builder"
 import { Product } from "../../../../entities/Product"
-import { ProductStock } from "../../../../entities/ProductStock"
 import { OrmProduct } from "../../../../typeorm/models/Product"
 import { IProductRepository } from "../../../IProducts/IProductRepository"
 
@@ -30,7 +29,7 @@ export class TypeormProductRepository implements IProductRepository {
 	async findByQuery(request: Request): Promise<OrmProduct[]> {
 		const repository = getRepository(OrmProduct, process.env.NODE_ENV)
 		const query = new QueryBuilder(request.query).build()
-		query.relations = ["stock"]
+		query.relations = ["stock", "images", "category"]
 		return await repository.find(query)
 	}
 }

@@ -1,8 +1,10 @@
 import { IProductRepository } from "../../../repositories/IProducts/IProductRepository"
 import { IProductStockRepository } from "../../../repositories/IProducts/IProductStockRepository"
+import { UseCase } from "../../IUseCase"
 import { ISubProductRequestDTO } from "./SubProductDTO"
 
-export class SubProductUseCase {
+
+export class SubProductUseCase implements UseCase {
 	constructor(
 		private productRepository: IProductRepository,
 		private productStockRepository: IProductStockRepository

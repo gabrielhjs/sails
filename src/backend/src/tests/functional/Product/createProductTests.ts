@@ -94,7 +94,7 @@ export const createProductTests = (props: TestPropsDTO) => {
 					productId: product.id
 				})
 
-			expect(response.body.)
+			expect(response.body.updatedStock).toBe(10)
 			expect(response.status).toBe(202)
 		})
 	})

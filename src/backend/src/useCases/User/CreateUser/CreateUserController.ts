@@ -1,7 +1,9 @@
 import { Request, Response } from "express"
+import { Controller } from "../../IController";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
-export class CreateUserController {
+
+export class CreateUserController implements Controller {
 	constructor(
 		private createUserUseCase: CreateUserUseCase
 	) { }

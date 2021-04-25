@@ -3,7 +3,6 @@ import { OrmProductStock } from "../../../../typeorm/models/ProductStock"
 import { IProductStockRepository } from "../../../IProducts/IProductStockRepository"
 import dotenv from "dotenv"
 import { ProductStock } from "../../../../entities/ProductStock"
-import { OrmProduct } from "../../../../typeorm/models/Product"
 
 
 dotenv.config()
@@ -24,7 +23,7 @@ export class TypeormProductStockRepository implements IProductStockRepository {
 			return
 		}
 		else {
-			return new ProductStock(productStock)
+			return productStock
 		}
 	}
 

@@ -1,8 +1,9 @@
 import { Request, Response } from "express"
-
+import { Controller } from "../../IController"
 import { AddProductImageUseCase } from "./AddProductImageUseCase"
 
-export class AddProductImageController {
+
+export class AddProductImageController implements Controller {
 	constructor(
 		private addProductImageUseCase: AddProductImageUseCase
 	) { }
@@ -14,7 +15,7 @@ export class AddProductImageController {
 		try {
 			await this.addProductImageUseCase.execute({
 				productId,
-				filename,
+				url: filename,
 				size
 			})
 

@@ -2,9 +2,9 @@ import express from "express"
 import { Request, Response } from "express"
 import compression from "compression"
 import { router } from "./routes"
-import { userRouter } from "./useCases/User/routes"
-import { productRouter } from "./useCases/Product/routes"
-import { companyRouter } from "./useCases/Company/routes"
+import { userRouter } from "./useCases/User/UserRoutes"
+import { productRouter } from "./useCases/Product/ProductRoutes"
+import { companyRouter } from "./useCases/Company/CompanyRoutes"
 
 
 const app = express()

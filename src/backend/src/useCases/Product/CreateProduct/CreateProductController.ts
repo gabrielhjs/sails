@@ -1,18 +1,21 @@
 import { Request, Response } from "express"
+import { Controller } from "../../IController";
 import { CreateProductUseCase } from "./CreateProductUseCase";
 
-export class CreateProductController {
+
+export class CreateProductController implements Controller {
 	constructor(
 		private createProductUseCase: CreateProductUseCase
 	) { }
 
 	async handle(request: Request, response: Response): Promise<Response> {
-		const { name, description, companyId } = request.body
+		const { name, description, categoryId, companyId } = request.body
 
 		try {
 			const newProduct = await this.createProductUseCase.execute({
 				name,
 				description,
+				categoryId,
 				companyId
 			})
 
