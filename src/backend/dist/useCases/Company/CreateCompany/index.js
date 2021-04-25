@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createCompanyUseCase = exports.createCompanyController = void 0;
+const CompaniesRepository_1 = require("../../../repositories/implements/typeorm/Company/CompaniesRepository");
+const UsersRepository_1 = require("../../../repositories/implements/typeorm/Users/UsersRepository");
+const CreateCompanytController_1 = require("./CreateCompanytController");
+const CreateCompanyUseCase_1 = require("./CreateCompanyUseCase");
+const userRepository = new UsersRepository_1.TypeormUsersRepository;
+const companyRepository = new CompaniesRepository_1.TypeOrmCompanyRepository;
+const createCompanyUseCase = new CreateCompanyUseCase_1.CreateCompanyUseCase(userRepository, companyRepository);
+exports.createCompanyUseCase = createCompanyUseCase;
+const createCompanyController = new CreateCompanytController_1.CreateCompanyController(createCompanyUseCase);
+exports.createCompanyController = createCompanyController;

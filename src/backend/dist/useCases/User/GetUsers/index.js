@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getUserUseCase = exports.getUserController = void 0;
+const UsersRepository_1 = require("../../../repositories/implements/typeorm/Users/UsersRepository");
+const GetUsersController_1 = require("./GetUsersController");
+const GetUsersUseCase_1 = require("./GetUsersUseCase");
+const UsersRepository = new UsersRepository_1.TypeormUsersRepository;
+const getUserUseCase = new GetUsersUseCase_1.GetUserUseCase(UsersRepository);
+exports.getUserUseCase = getUserUseCase;
+const getUserController = new GetUsersController_1.GetUserController(getUserUseCase);
+exports.getUserController = getUserController;

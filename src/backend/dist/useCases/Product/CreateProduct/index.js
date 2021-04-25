@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProductUseCase = exports.createProductController = void 0;
+const CompaniesRepository_1 = require("../../../repositories/implements/typeorm/Company/CompaniesRepository");
+const ProductCategoryRepository_1 = require("../../../repositories/implements/typeorm/Products/ProductCategoryRepository");
+const ProductsRepository_1 = require("../../../repositories/implements/typeorm/Products/ProductsRepository");
+const CreateProductController_1 = require("./CreateProductController");
+const CreateProductUseCase_1 = require("./CreateProductUseCase");
+const productRepository = new ProductsRepository_1.TypeormProductRepository;
+const productCategoryRepository = new ProductCategoryRepository_1.TypeormProductCategoryRepository;
+const companyRepository = new CompaniesRepository_1.TypeOrmCompanyRepository;
+const createProductUseCase = new CreateProductUseCase_1.CreateProductUseCase(productRepository, productCategoryRepository, companyRepository);
+exports.createProductUseCase = createProductUseCase;
+const createProductController = new CreateProductController_1.CreateProductController(createProductUseCase);
+exports.createProductController = createProductController;

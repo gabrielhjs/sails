@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createUserUseCase = exports.createUserController = void 0;
+const BcryptJwtAuthenticationProvider_1 = require("../../../providers/AuthenticationProvider/implements/BcryptJwtAuthenticationProvider");
+const UsersRepository_1 = require("../../../repositories/implements/typeorm/Users/UsersRepository");
+const CreateUserController_1 = require("./CreateUserController");
+const CreateUserUseCase_1 = require("./CreateUserUseCase");
+const UsersRepository = new UsersRepository_1.TypeormUsersRepository;
+const AuthenticationProvider = new BcryptJwtAuthenticationProvider_1.BcryptJwtAuthenticationProvider;
+const createUserUseCase = new CreateUserUseCase_1.CreateUserUseCase(UsersRepository, AuthenticationProvider);
+exports.createUserUseCase = createUserUseCase;
+const createUserController = new CreateUserController_1.CreateUserController(createUserUseCase);
+exports.createUserController = createUserController;

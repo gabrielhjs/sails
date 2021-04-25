@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.addProductImageUseCase = exports.addProductImageController = void 0;
+const ProductImagesRepository_1 = require("../../../repositories/implements/typeorm/Products/ProductImagesRepository");
+const ProductsRepository_1 = require("../../../repositories/implements/typeorm/Products/ProductsRepository");
+const AddProductImageController_1 = require("./AddProductImageController");
+const AddProductImageUseCase_1 = require("./AddProductImageUseCase");
+const productImageRepository = new ProductImagesRepository_1.TypeormProductImageRepository;
+const productRepository = new ProductsRepository_1.TypeormProductRepository;
+const addProductImageUseCase = new AddProductImageUseCase_1.AddProductImageUseCase(productImageRepository, productRepository);
+exports.addProductImageUseCase = addProductImageUseCase;
+const addProductImageController = new AddProductImageController_1.AddProductImageController(addProductImageUseCase);
+exports.addProductImageController = addProductImageController;
