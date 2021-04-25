@@ -6,7 +6,7 @@ COPY package.json yarn.lock ormconfig.json $HOME/node_docker/
 
 WORKDIR $HOME/node_docker/
 
-RUN yarn install --frozen-lockfile && yarn install tsc rimraf --global
+RUN yarn install --frozen-lockfile && yarn global add tsc rimraf
 RUN rimraf dist && tsc
 
 
