@@ -34,12 +34,17 @@
 		"type": "postgres",
 		"url": "postgres://wxrkpgpsyvarma:9fd254d26a10875a02b41fe08aed0ab97988321536c9bd96b99539b9a0d7696a@ec2-52-21-252-142.compute-1.amazonaws.com:5432/domv1dl07ot59",
 		"ssl": true,
+		"extra": {
+			"ssl": {
+				"rejectUnauthorized": false
+			}
+		},
 		"logging": false,
 		"cache": {
 			"type": "redis",
 			"options": {
-				"host": "redis://:p372773700b47ebb8186895813be064b29b7ab642d042bd1172c3a640452f780a@ec2-34-232-205-166.compute-1.amazonaws.com",
-				"port": "7519"
+				"host": "rediss://:p372773700b47ebb8186895813be064b29b7ab642d042bd1172c3a640452f780a@ec2-34-232-205-166.compute-1.amazonaws.com",
+				"port": "7520"
 			},
 			"duration": 5000
 		},
