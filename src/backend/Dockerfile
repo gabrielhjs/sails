@@ -11,6 +11,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn typescript migration:run -c production
 
 USER 1001
+EXPOSE 80
 
 
 CMD ["yarn", "start"]
