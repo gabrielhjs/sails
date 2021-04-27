@@ -1,4 +1,4 @@
-FROM node:14.16.0-alpine3.13
+FROM node:node:14.16.0-alpine3.13
 
 ENV HOME=/home/app
 
@@ -10,3 +10,7 @@ WORKDIR $HOME/node_docker/
 RUN yarn install --frozen-lockfile
 
 USER 1001
+
+EXPOSE 1456
+
+CMD ["yarn", "start"]
