@@ -10,7 +10,3 @@ WORKDIR $HOME/node_docker/
 RUN yarn install --frozen-lockfile
 
 USER 1001
-EXPOSE 80
-
-
-CMD ["yarn", "start"]
