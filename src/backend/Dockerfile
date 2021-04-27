@@ -1,17 +1,15 @@
-FROM node:lts
+FROM node:alpine
 
 ENV HOME=/home/app
 
-COPY package.json yarn.lock ormconfig.json $HOME/node_docker/
+COPY package.json yarn.lock ormconfig.json tsconfig.json $HOME/node_docker/
+COPY ./dist/ $HOME/node_docker/dist/
 
 WORKDIR $HOME/node_docker/
 
-RUN yarn install --frozen-lockfile && yarn global add tsc rimraf
-RUN rimraf dist && tsc
-
+RUN yarn install --frozen-lockfile
 
 USER 1001
-EXPOSE 3333
 
 
 CMD ["yarn", "start"]
