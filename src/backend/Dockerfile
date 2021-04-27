@@ -8,7 +8,6 @@ COPY ./dist/ $HOME/node_docker/dist/
 WORKDIR $HOME/node_docker/
 
 RUN yarn install --frozen-lockfile
-RUN yarn typeorm migration:run -c production
 
 USER 1001
 EXPOSE 80
