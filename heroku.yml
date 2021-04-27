@@ -1,3 +1,8 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+    - plan: heroku-redis
+
 build:
   docker:
     web: src/backend/Dockerfile
