@@ -8,6 +8,7 @@ COPY ./dist/ $HOME/node_docker/dist/
 WORKDIR $HOME/node_docker/
 
 RUN yarn install --frozen-lockfile
+RUN yarn typescript migration:run -c production
 
 USER 1001
 
